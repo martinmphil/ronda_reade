@@ -1,5 +1,12 @@
 import os
 import sys
+import warnings
+
+# Suppress the UserWarning from pkg_resources
+warnings.filterwarnings("ignore", message="pkg_resources is deprecated as an API")
+
+# Force CPU use by hiding CUDA devices, suppressing PyTorch warnings
+os.environ['CUDA_VISIBLE_DEVICES'] = ''
 
 # Define the absolute path to the project root directory
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -41,3 +48,6 @@ output_audio_path = "sound.wav" # This will save in the project root
 sf.write(output_audio_path, wav, 24000)
 
 print(f"Audio saved to {output_audio_path}")
+
+# Explicitly clean up the model to prevent shutdown errors
+del tts
