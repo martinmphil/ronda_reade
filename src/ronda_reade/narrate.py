@@ -26,8 +26,10 @@ tts = NeuTTSAir(
     codec_device="cpu"
 )
 
-# Hard-coded input text
-input_text = "2 is my favourite number."
+# Read input text from file
+input_file_path = os.path.join(PROJECT_ROOT, 'input', 'user input text.txt')
+with open(input_file_path, "r", encoding="utf-8") as f:
+    input_text = f.read().strip()
 
 # Construct portable paths to the reference audio and text files
 ref_audio_path = os.path.join(PROJECT_ROOT, 'model', 'neutts-air', 'samples', 'dave.wav')
