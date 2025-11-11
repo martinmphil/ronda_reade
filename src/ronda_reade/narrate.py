@@ -59,8 +59,10 @@ ref_codes = tts.encode_reference(ref_audio_path)
 # Perform inference
 wav = tts.infer(input_text, ref_codes, ref_text)
 
-# Save the output audio
-output_audio_path = "sound.wav" # This will save in the project root
+# Save the output audio to the output directory
+output_dir = os.path.join(PROJECT_ROOT, 'output')
+os.makedirs(output_dir, exist_ok=True) # Ensure the output directory exists
+output_audio_path = os.path.join(output_dir, "sound.wav")
 sf.write(output_audio_path, wav, 24000)
 
 print(f"Audio saved to {output_audio_path}")
