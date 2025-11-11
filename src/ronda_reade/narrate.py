@@ -26,10 +26,24 @@ tts = NeuTTSAir(
     codec_device="cpu"
 )
 
-# Read input text from file
-input_file_path = os.path.join(PROJECT_ROOT, 'input', 'user input text.txt')
-with open(input_file_path, "r", encoding="utf-8") as f:
-    input_text = f.read().strip()
+# Find and read the first .txt file in the input directory
+input_dir = os.path.join(PROJECT_ROOT, 'input')
+input_text = None
+input_filename = None
+
+for filename in sorted(os.listdir(input_dir)):
+    if filename.endswith(".txt"):
+        input_file_path = os.path.join(input_dir, filename)
+        if os.path.isfile(input_file_path):
+            with open(input_file_path, "r", encoding="utf-8") as f:
+                input_text = f.read().strip()
+            input_filename = filename
+            print(f"Using input file: {input_filename}")
+            break
+
+if input_text is None:
+    print("Error: No .txt file found in the 'input' directory.")
+    sys.exit(1)
 
 # Construct portable paths to the reference audio and text files
 ref_audio_path = os.path.join(PROJECT_ROOT, 'model', 'neutts-air', 'samples', 'dave.wav')
