@@ -3,21 +3,14 @@ At each step, the next requirement to be tackled is logically identified and the
 
 # Active Tasks
 
-## Core Functionality Spike (The Walking Skeleton)
-*Goal: Prove we can convert a simple, hard-coded string to a playable audio file.*
-
-*   **Research `neutts-air`:** Understand the model's API and dependencies.
-*   **Create a Basic Narration Script:** Write a single script that:
-    *   Takes a hard-coded text string (e.g., "Life, love and happiness.").
-    *   Uses the `neutts-air` model to generate audio.
-    *   Saves the output as a `sound.wav` file.
-
 ## Building the Processing Pipeline
 *Goal: Expand the skeleton to handle file I/O and the logic from the requirements.*
 
 *   **Implement Text File Input:** Read text from a user-specified file instead of a hard-coded string.
+*   **Write Unit Test for Text Chunking:** Create a test to verify that text is correctly segmented based on the rules in `requirements.md`.
 *   **Implement Text Chunking:** Segment the input text according to the rules in `requirements.md`.
 *   **Implement Conversion Loop:** Create the orchestration logic to loop through text chunks, convert each to audio, and hold them in memory.
+*   **Write Unit Test for Audio Concatenation:** Create a test to verify that multiple audio segments are combined correctly into a single audio object.
 *   **Implement Audio Concatenation:** Combine the individual audio chunks into a single audio object and write it to a final output file.
 
 ## Assess audio flow
@@ -50,5 +43,14 @@ In `requirements.md` define the initial requirements for this app using "Easy Ap
 Clone the `neutts-air` model code into a directory named `neutts-air` within a `model` directory at the root of this project. 
 
 Running the `neutts-air` process for the first time on a machine triggers the downloading of AI files into a local cache managed by Hugging Face. 
+
+## Core Functionality Spike (The Walking Skeleton)
+*Goal: Prove we can convert a simple, hard-coded string to a playable audio file.*
+
+*   **Research `neutts-air`:** Understand the model's API and dependencies.
+*   **Create a Basic Narration Script:** Write a single script that:
+    *   Takes a hard-coded text string (e.g., "Life, love and happiness.").
+    *   Uses the `neutts-air` model to generate audio.
+    *   Saves the output as a `sound.wav` file.
 
 
