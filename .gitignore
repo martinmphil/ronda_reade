@@ -211,3 +211,7 @@ __marimo__/
 
 # Ignore the voice directory containing voice samples
 /voices
+
+# During development two temporary interim directories for user input and output
+/input
+/output
