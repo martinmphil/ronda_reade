@@ -16,6 +16,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..
 neutts_air_path = os.path.join(PROJECT_ROOT, 'model', 'neutts-air')
 sys.path.append(neutts_air_path)
 
+# Import the NeuTTSAir class from the vendored library
 from neuttsair.neutts import NeuTTSAir
 import soundfile as sf
 
