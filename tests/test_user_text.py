@@ -53,5 +53,31 @@ def test_validate_long_word_raises_exception(tmp_path: Path):
     with pytest.raises(InvalidTextFileError, match="This file contains overly long words."):
         UserText(long_word_file)
 
+def test_normalize_line_endings(tmp_path: Path):
+    """
+    Verify that UserText normalizes various line endings to '\n'.
+    """
+    text_with_mixed_endings = (
+        "Line 1 with CRLF.\r\n"
+        "Line 2 with CR.\r"
+        "Line 3 with LF.\n"
+        "Line 4 with Paragraph Separator.\u2029"
+        "Line 5."
+    )
+    expected_normalized_text = (
+        "Line 1 with CRLF.\n"
+        "Line 2 with CR.\n"
+        "Line 3 with LF.\n"
+        "Line 4 with Paragraph Separator.\n"
+        "Line 5."
+    )
+    
+    mixed_file = tmp_path / "mixed_endings.txt"
+    mixed_file.write_text(text_with_mixed_endings, encoding="utf-8")
+
+    user_text = UserText(mixed_file)
+    assert user_text.content == expected_normalized_text
+
+
 
 

@@ -34,6 +34,9 @@ class UserText:
         except UnicodeDecodeError as e:
             raise InvalidTextFileError("Please provide a text file containing only plain text.") from e
 
+        # Normalize line endings: replace CRLF, CR, and Unicode Paragraph Separator with LF
+        content = content.replace('\r\n', '\n').replace('\r', '\n').replace('\u2029', '\n')
+
         if not content:
             raise InvalidTextFileError("This text file is empty.")
 
