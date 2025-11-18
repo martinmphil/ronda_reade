@@ -6,7 +6,10 @@ At each step, the next requirement to be tackled is logically identified and the
 ## Implement Object-Oriented Structure
 *Goal: Create a robust, class-based architecture.*
 
-*   **Implement `Oration` Orchestration:**
+*   **Implement `Narrator` Class:**
+    *   Write a unit test for narration process.
+    *   Implement the logic and imports to convert text into an audio array.
+*   **Implement `Oration` Class:**
     *   Develop the `run()` method to orchestrate the process: `UserText` validation, `TextChunker` chunking, and looping.
     *   Integrate the `Narrator` to convert text chunks to audio segments and hold them in memory.
 *   **Implement `AudioComposition` Class:**
