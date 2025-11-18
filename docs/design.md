@@ -2,63 +2,54 @@
 
 This app converts text-to-speech. 
 
+This standalone application is designed for local use and is not intended for distribution as a library.
+
 Text-to-speech conversion uses a light-weight neural network running locally. 
 
 The app provides an inbuilt voice. 
 
 The user inputs a local text file and the app converts this text file into an audio output file which plays a faithful narration of the user's text with realistic speech patterns and natural cadence. 
 
-Built in Python and managed with Poetry, this app uses the [neutts-air](https://huggingface.co/neuphonic/neutts-air) model from Hugging Face for all speech synthesis. 
+Built in Python and managed with Poetry, this app uses the [neutts-air](https://huggingface.co/neuphonic/neutts-air) model from Hugging Face for speech synthesis. 
 
-For a list of functional and non-functional requirements specified in the `requirements.md` file.
+For a list of functional requirements and system constraints see the `requirements.md` file.
 
 
 # Technical Architecture
 
-To ensure separation of concerns, ease of testing, and maintainability, the application employs a modular, three-part, architecture listed below. 
+To ensure separation of concerns, ease of testing, and maintainability, the application employs an Object-Oriented architecture built around a central `Oration` object that orchestrates several specialist service objects.
 
-## User Interface (UI) Module 
+## User Interface (UI) Module
 
-Responsible for all user interaction. 
+Responsible for all user interaction. A simple web-based interface handles file uploads, displays status messages, and provides the generated audio for playback. It interacts with an `Oration` object to start the process and monitor its state.
 
-A simple web-based interface handles file uploads, displays status messages, and provides the generated audio for playback. 
+## Oration Class
 
-## Orchestration Module  
+This class is the core engine of the application, managing the entire lifecycle of a text-to-speech conversion. An instance of this class represents a single job. It will:
 
-Application logic and core engine. 
+*   Receive the input and output file paths.
+*   Instantiate a `UserText` and invoke its validation methods.
+*   Use a `TextChunker` object to segment the text.
+*   Manage the TTS conversion loop, passing chunks to a `Narrator` object.
+*   Assemble the final audio file using an `AudioComposition` object.
+*   Report its own status and progress back to the UI.
 
-The central component of the app, this module will:
+## Core Classes
 
-  * Receive the input file path from the UI 
-  * Invoke a Validation Service 
-  * Invoke a Chunking Service 
-  * Manage the TTS conversion loop, iterating over text chunks 
-  * Enforce rules for time-outs, reties and file size limits 
-  * Assemble the final audio file 
-  * Report errors and status back to the UI 
+*   **`Oration`**: Orchestrates the entire validation, chunking, and TTS process for a single run.
+*   **`UserText`**: Represents the source text file and contains all validation logic (file size, encoding, word length).
+*   **`TextChunker`**: Implements the text-splitting logic based on paragraphs, sentences, or character limits.
+*   **`Narrator`**: A wrapper class for the `neutts-air` model, responsible for converting a single text chunk to an audio segment.
+*   **`AudioComposition`**: Manages the collection of audio segments and their concatenation into a final `.wav` file.
+*   **`exceptions.py`**: Custom exceptions for error handling.
 
-## Service Module 
+## Application Entry Point
 
-This module is a model-wrapper that manages all direct interaction with the `neutts-air` model machine-learning model. 
+*   **`src/ronda_reade/main.py`**: The main entry point for the application, responsible for launching the UI and initiating the conversion process. To run the app, execute the following command from the project's root directory:
+    ```bash
+    poetry run ronda-reade
+    ```
 
-This module will: 
-    * load the `neutts-air` model from a local directory 
-    * generate audio from a given string of text 
-    
-This module isolates the complex machine-learning code from the rest of the application. 
-
-### AI Model Files 
-`neutts-air` manages the downloading and local caching of large AI files (typically in `~/.cache/huggingface/hub`). 
-
-# Files 
-* app.py           - Entry point
-* ui.py            - Runs the UI application module
-* orchestrate.py   - Orchestrates the validation, chunking, and TTS process
-* narrator.py      - Wrapper class for the neutts-air model
-* validate.py      - Implements all file and text validation rules
-* chunking.py      - Implements text-splitting logic
-* exceptions.py    - Custom exceptions for error handling
-
-# Directories 
-* `/docs`          - Holds all the human-readable documentation. 
-* `/model`         - Holds the `neuphonic/neutts-air` model files. 
+# Directories
+* `/docs`          - Holds all the human-readable documentation.
+* `/model`         - Holds the `neuphonic/neutts-air` model files.

@@ -3,26 +3,38 @@ At each step, the next requirement to be tackled is logically identified and the
 
 # Active Tasks
 
-## Building the Processing Pipeline
-*Goal: Expand the skeleton to handle file I/O and the logic from the requirements.*
+## Implement Object-Oriented Structure
+*Goal: Create a robust, class-based architecture.*
 
-*   **Implement Text File Input:** Read text from a user-specified file instead of a hard-coded string.
-*   **Write Unit Test for Text Chunking:** Create a test to verify that text is correctly segmented based on the rules in `requirements.md`.
-*   **Implement Text Chunking:** Segment the input text according to the rules in `requirements.md`.
-*   **Implement Conversion Loop:** Create the orchestration logic to loop through text chunks, convert each to audio, and hold them in memory.
-*   **Write Unit Test for Audio Concatenation:** Create a test to verify that multiple audio segments are combined correctly into a single audio object.
-*   **Implement Audio Concatenation:** Combine the individual audio chunks into a single audio object and write it to a final output file.
+*   **Define Core Classes:**
+    *   Create the class structure for `UserText`, `TextChunker`, `Narrator`, `AudioComposition`, and `Oration`.
+*   **Implement `UserText` Class:**
+    *   Add methods to read a text file.
+    *   Write unit tests for validation logic (file size, encoding, empty file, word length).
+    *   Implement the `validate()` method to perform all checks.
+*   **Implement `TextChunker` Class:**
+    *   Write a unit test to verify text is correctly segmented based on the rules in `requirements.md`.
+    *   Implement the `chunk()` method.
+*   **Implement `Oration` Orchestration:**
+    *   Develop the `run()` method to orchestrate the process: `UserText` validation, `TextChunker` chunking, and looping.
+    *   Integrate the `Narrator` to convert text chunks to audio segments and hold them in memory.
+*   **Implement `AudioComposition` Class:**
+    *   Write a unit test for audio concatenation.
+    *   Implement the logic to combine audio segments and write it to a final `.wav` file.
 
 ## Assess audio flow
 *Goal: ensure well-paced smooth audio*
 
-Determine if pauses are required between audio chunks. 
+*   Determine if pauses are required between audio chunks. This can be a feature of the `AudioComposition` class.
 
 ## User Interface
 *Goal: Create a simple interface for a user to interact with the application.*
 
 *   **Research and Select UI Library:** Assess `Gradio`, `Streamlit`, or another suitable library.
-*   **Build Initial UI:** Develop a minimal interface for file selection, triggering the conversion, and indicating progress.
+*   **Build Initial UI:** Develop a minimal interface that:
+    *   Instantiates an `Oration` with user-selected file paths.
+    *   Calls the `run()` method on the job.
+    *   Monitors the job's state to show progress.
 
 ## Backlog (Future Tasks)
 *These are important tasks that can be prioritised and refined as the core application takes shape.*
@@ -49,7 +61,7 @@ Running the `neutts-air` process for the first time on a machine triggers the do
 
 *   **Research `neutts-air`:** Understand the model's API and dependencies.
 *   **Create a Basic Narration Script:** Write a single script that:
-    *   Takes a hard-coded text string (e.g., "Life, love and happiness.").
+    *   Takes a hard-coded text string (e.g., "This is a text to speech test.").
     *   Uses the `neutts-air` model to generate audio.
     *   Saves the output as a `sound.wav` file.
 
