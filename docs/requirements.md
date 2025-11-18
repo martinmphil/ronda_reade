@@ -24,7 +24,7 @@ If the input text file is empty, then the app shall reject the file and report a
 
 If the app detects an input text file encoding other than UTF-8, then the app shall reject the file and report a message to the user saying, " Please provide a text file containing only plain text. " 
 
-If the input text file size is greater than 5MB, then the app shall reject the file and report a message to the user saying, " This text file is larger than 5 MB. Please provide a plain text file smaller than 5MB. " 
+If the input text file size is greater than 5MB (~1 million words), then the app shall reject the file and report a message to the user saying, " This text file is larger than 5 MB. Please provide a plain text file smaller than 5MB. " 
 
 If the input text file contains any word longer than 50 letters, then the app shall reject the file and report a message to the user saying, " This file contains overly long words. Please provide a plain text where all words are shorter than 45 letters. " 
 
