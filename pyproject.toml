@@ -1,0 +1,33 @@
+[project]
+name = "ronda_reade"
+version = "0.1.0"
+description = "Converting text-to-speech using a local neural network"
+authors = [
+    {name = "martin.mphil@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = "==3.12"
+dependencies = [
+    "librosa (==0.11.0)",
+    "neucodec (>=0.0.4)",
+    "numpy (==2.2.6)",
+    "phonemizer (==3.3.0)",
+    "soundfile (==0.13.1)",
+    "torch (==2.8.0)",
+    "transformers (==4.56.1)",
+    "resemble-perth (==1.0.1)",
+    "llama-cpp-python (>=0.3.16,<0.4.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry]
+packages = [{include = "ronda_reade", from = "src"}]
+
+[tool.poetry.scripts]
+ronda-reade = "ronda_reade.main:run"
