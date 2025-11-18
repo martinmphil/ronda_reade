@@ -31,3 +31,7 @@ packages = [{include = "ronda_reade", from = "src"}]
 
 [tool.poetry.scripts]
 ronda-reade = "ronda_reade.main:run"
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.1,<10.0.0)"
+]
