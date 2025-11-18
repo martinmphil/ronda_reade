@@ -5,16 +5,21 @@ import unittest.mock
 import numpy as np
 from ronda_reade.oration import Oration
 
+@unittest.mock.patch('ronda_reade.oration.audio_composition.AudioComposition')
 @unittest.mock.patch('ronda_reade.oration.narrator') # Corrected patch target
-def test_oration_orchestrates_narrator_correctly(MockNarrator, tmp_path: Path):
+def test_oration_orchestrates_narrator_and_audio_composition_correctly(MockNarrator, MockAudioComposition, tmp_path: Path):
     """
     Verify that the Oration class correctly orchestrates the Narrator
-    to convert text chunks into audio segments.
+    to convert text chunks into audio segments and then uses AudioComposition
+    to save the final audio.
     """
     # Setup mock Narrator
     mock_narrator_instance = MockNarrator.Narrator.return_value # Corrected access to mocked class
     dummy_audio_segment = np.array([0.1, 0.2, 0.3], dtype=np.float32)
     mock_narrator_instance.narrate_chunk.return_value = dummy_audio_segment
+
+    # Setup mock AudioComposition
+    mock_audio_composition_instance = MockAudioComposition.return_value
 
     # Create a dummy text file with two paragraphs
     test_content = """This is the first paragraph.
@@ -43,4 +48,11 @@ This is the second paragraph."""
     assert len(oration.audio_segments) == 2
     assert np.array_equal(oration.audio_segments[0], dummy_audio_segment)
     assert np.array_equal(oration.audio_segments[1], dummy_audio_segment)
+
+    # Assert AudioComposition was instantiated with the audio segments
+    MockAudioComposition.assert_called_once_with(oration.audio_segments)
+
+    # Assert save method was called with the correct output path and samplerate
+    expected_output_path = test_file.with_suffix(".wav")
+    mock_audio_composition_instance.save.assert_called_once_with(expected_output_path, 24000)
 

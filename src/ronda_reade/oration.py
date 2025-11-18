@@ -6,6 +6,7 @@ from pathlib import Path
 from .user_text import UserText
 from .text_chunker import TextChunker
 from . import narrator # Changed import
+from . import audio_composition # New import
 
 class Oration:
     """
@@ -29,3 +30,8 @@ class Oration:
         for chunk in self.chunks:
             audio_segment = narrator_instance.narrate_chunk(chunk)
             self.audio_segments.append(audio_segment)
+        
+        # Assemble and save the final audio
+        audio_composer = audio_composition.AudioComposition(self.audio_segments)
+        output_path = self.input_path.with_suffix(".wav")
+        audio_composer.save(output_path, 24000)
