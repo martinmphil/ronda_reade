@@ -6,12 +6,6 @@ At each step, the next requirement to be tackled is logically identified and the
 ## Implement Object-Oriented Structure
 *Goal: Create a robust, class-based architecture.*
 
-*   **Define Core Classes:**
-    *   Create the class structure for `UserText`, `TextChunker`, `Narrator`, `AudioComposition`, and `Oration`.
-*   **Implement `UserText` Class:**
-    *   Add methods to read a text file.
-    *   Write unit tests for validation logic (file size, encoding, empty file, word length).
-    *   Implement the `validate()` method to perform all checks.
 *   **Implement `TextChunker` Class:**
     *   Write a unit test to verify text is correctly segmented based on the rules in `requirements.md`.
     *   Implement the `chunk()` method.
@@ -65,4 +59,12 @@ Running the `neutts-air` process for the first time on a machine triggers the do
     *   Uses the `neutts-air` model to generate audio.
     *   Saves the output as a `sound.wav` file.
 
+## Implement Object-Oriented Structure
+*Goal: Create a robust, class-based architecture.*
 
+*   **Define Core Classes:**
+    *   Create the class structure for `UserText`, `TextChunker`, `Narrator`, `AudioComposition`, and `Oration`.
+*   **Implement `UserText` Class:**
+    *   Add methods to read a text file.
+    *   Write unit tests for validation logic (file size, encoding, empty file, word length).
+    *   Implement the `validate()` method to perform all checks.
