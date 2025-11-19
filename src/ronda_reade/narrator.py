@@ -39,8 +39,8 @@ class Narrator:
         )
 
         # Construct portable paths to the reference audio and text files
-        ref_audio_path = os.path.join(PROJECT_ROOT, 'model', 'neutts-air', 'samples', 'dave.wav')
-        ref_text_path = os.path.join(PROJECT_ROOT, 'model', 'neutts-air', 'samples', 'dave.txt')
+        ref_audio_path = os.path.join(PROJECT_ROOT, 'voices', 'VCTK_p239', 'VCTK_p239.wav')
+        ref_text_path = os.path.join(PROJECT_ROOT, 'voices', 'VCTK_p239', 'VCTK_p239.txt')
 
         # Read the reference text
         with open(ref_text_path, "r") as f:
