@@ -29,10 +29,10 @@ class AudioComposition:
             samplerate: The sample rate for the output audio file.
         """
         if not self.audio_segments:
-            # Handle case where there are no segments to concatenate
-            # For now, we can create an empty file or raise an error
-            # Based on requirements, this scenario should ideally be prevented earlier
-            # For now, let's create an empty audio file
+            # Handle case where no segments exist for concatenation.
+            # Create an empty file or raise an error.
+            # Prevent this scenario earlier based on requirements.
+            # Create an empty audio file.
             sf.write(output_path, np.array([], dtype=np.float32), samplerate)
             return
 

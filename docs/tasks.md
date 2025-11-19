@@ -3,24 +3,6 @@ At each step, the next requirement to be tackled is logically identified and the
 
 # Active Tasks
 
-## Implement Object-Oriented Structure
-*Goal: Create a robust, class-based architecture.*
-
-*   **Implement `Narrator` Class:**
-    *   Write a unit test for narration process.
-    *   Implement the logic and imports to convert text into an audio array.
-*   **Implement `Oration` Class:**
-    *   Develop the `run()` method to orchestrate the process: `UserText` validation, `TextChunker` chunking, and looping.
-    *   Integrate the `Narrator` to convert text chunks to audio segments and hold them in memory.
-*   **Implement `AudioComposition` Class:**
-    *   Write a unit test for audio concatenation.
-    *   Implement the logic to combine audio segments and write it to a final `.wav` file.
-
-## Assess audio flow
-*Goal: ensure well-paced smooth audio*
-
-*   Determine if pauses are required between audio chunks. This can be a feature of the `AudioComposition` class.
-
 ## User Interface
 *Goal: Create a simple interface for a user to interact with the application.*
 
@@ -30,12 +12,15 @@ At each step, the next requirement to be tackled is logically identified and the
     *   Calls the `run()` method on the job.
     *   Monitors the job's state to show progress.
 
+## Assess audio flow
+*Goal: ensure well-paced smooth audio*
+
+*   Determine if pauses are required between audio chunks. This can be a feature of the `AudioComposition` class.
+
 ## Backlog (Future Tasks)
 *These are important tasks that can be prioritised and refined as the core application takes shape.*
 
-*   **Validation & Error Handling:** Implement the specific validation rules from `requirements.md` (file size, encoding, etc.).
 *   **Configuration:** Add configuration for default directories, etc.
-
 
 # Completed Tasks
 
@@ -51,7 +36,7 @@ Clone the `neutts-air` model code into a directory named `neutts-air` within a `
 Running the `neutts-air` process for the first time on a machine triggers the downloading of AI files into a local cache managed by Hugging Face. 
 
 ## Core Functionality Spike (The Walking Skeleton)
-*Goal: Prove we can convert a simple, hard-coded string to a playable audio file.*
+*Goal: Show a simple conversion of a hard-coded string to a playable audio file.*
 
 *   **Research `neutts-air`:** Understand the model's API and dependencies.
 *   **Create a Basic Narration Script:** Write a single script that:
@@ -71,3 +56,12 @@ Running the `neutts-air` process for the first time on a machine triggers the do
 *   **Implement `TextChunker` Class:**
     *   Write a unit test to verify text is correctly segmented based on the rules in `requirements.md`.
     *   Implement the `chunk()` method.
+*   **Implement `Narrator` Class:**
+    *   Write a unit test for narration process.
+    *   Implement the logic and imports to convert text into an audio array.
+*   **Implement `Oration` Class:**
+    *   Develop the `run()` method to orchestrate the process: `UserText` validation, `TextChunker` chunking, and looping.
+    *   Integrate the `Narrator` to convert text chunks to audio segments and hold them in memory.
+*   **Implement `AudioComposition` Class:**
+    *   Write a unit test for audio concatenation.
+    *   Implement the logic to combine audio segments and write it to a final `.wav` file.

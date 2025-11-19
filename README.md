@@ -34,6 +34,11 @@ Clone the `neutts-air` model code into a directory named `neutts-air` within a `
 git clone https://github.com/neuphonic/neutts-air model/neutts-air
 ```
 
+# Unit Tests
+```bash
+poetry run pytest
+```
+
 # Sources 
 
 ## Voice 
