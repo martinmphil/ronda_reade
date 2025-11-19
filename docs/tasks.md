@@ -3,15 +3,6 @@ At each step, the next requirement to be tackled is logically identified and the
 
 # Active Tasks
 
-## User Interface
-*Goal: Create a simple interface for a user to interact with the application.*
-
-*   **Research and Select UI Library:** Assess `Gradio`, `Streamlit`, or another suitable library.
-*   **Build Initial UI:** Develop a minimal interface that:
-    *   Instantiates an `Oration` with user-selected file paths.
-    *   Calls the `run()` method on the job.
-    *   Monitors the job's state to show progress.
-
 ## Assess audio flow
 *Goal: ensure well-paced smooth audio*
 
@@ -19,7 +10,7 @@ At each step, the next requirement to be tackled is logically identified and the
 
 ## Backlog (Future Tasks)
 *These are important tasks that can be prioritised and refined as the core application takes shape.*
-
+*   **Validation & Error Handling:** Implement the specific validation rules from `requirements.md` (file size, encoding, etc.).
 *   **Configuration:** Add configuration for default directories, etc.
 
 # Completed Tasks
@@ -65,3 +56,12 @@ Running the `neutts-air` process for the first time on a machine triggers the do
 *   **Implement `AudioComposition` Class:**
     *   Write a unit test for audio concatenation.
     *   Implement the logic to combine audio segments and write it to a final `.wav` file.
+
+## User Interface
+*Goal: Create a simple interface for a user to interact with the application.*
+*   **Research and Select UI Library:** Assessed `Gradio` and `Streamlit`, selecting `Gradio` as the most suitable library for its robust handling of long-running batch processes and features tailored to ML workflows.
+*   **Add Gradio Dependency:** Add `gradio` to the project's `pyproject.toml`.
+*   **Create UI Module:** Create a new file `src/ronda_reade/ui.py` for the Gradio interface.
+*   **Implement Basic UI:** Use `gradio.Blocks` to create the UI with file input, an output audio component, and a "Start" button.
+*   **Integrate `Oration`:** Connect the UI to the `Oration` class to run the text-to-speech process.
+*   **Update Entry Point:** Modify `src/ronda_reade/main.py` to launch the Gradio app.
