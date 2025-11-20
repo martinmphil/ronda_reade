@@ -5,20 +5,46 @@ assembly of audio segments into a final audio file.
 import numpy as np
 import soundfile as sf
 from pathlib import Path
+from .exceptions import AudioTooLargeError
+
+# Define the maximum size for the audio file in bytes (2 GB)
+MAX_AUDIO_SIZE_BYTES = 2 * 1024 * 1024 * 1024
 
 class AudioComposition:
     """
     Manages the collection of audio segments and their concatenation
-    into a final audio file.
+    into a final audio file, ensuring the total size does not exceed a limit.
     """
-    def __init__(self, audio_segments: list[np.ndarray]):
+    def __init__(self, max_size_bytes: int = MAX_AUDIO_SIZE_BYTES):
         """
-        Initializes the AudioComposition with a list of audio segments.
+        Initializes the AudioComposition.
 
         Args:
-            audio_segments: A list of numpy arrays, each representing an audio segment.
+            max_size_bytes: The maximum allowed size for the final audio
+                            file in bytes.
         """
-        self.audio_segments = audio_segments
+        self.max_size_bytes = max_size_bytes
+        self.audio_segments: list[np.ndarray] = []
+        self.total_size_bytes = 0
+
+    def add_segment(self, segment: np.ndarray):
+        """
+        Adds an audio segment to the composition after checking size constraints.
+
+        Args:
+            segment: A numpy array representing the audio segment.
+
+        Raises:
+            AudioTooLargeError: If adding the segment would exceed the max size.
+        """
+        segment_size = segment.nbytes
+        if self.total_size_bytes + segment_size > self.max_size_bytes:
+            raise AudioTooLargeError(
+                f"Adding this segment would exceed the audio file size limit of "
+                f"{self.max_size_bytes / (1024*1024):.0f} MB."
+            )
+        self.audio_segments.append(segment)
+        self.total_size_bytes += segment_size
 
     def save(self, output_path: Path, samplerate: int = 24000):
         """
@@ -29,10 +55,6 @@ class AudioComposition:
             samplerate: The sample rate for the output audio file.
         """
         if not self.audio_segments:
-            # Handle case where no segments exist for concatenation.
-            # Create an empty file or raise an error.
-            # Prevent this scenario earlier based on requirements.
-            # Create an empty audio file.
             sf.write(output_path, np.array([], dtype=np.float32), samplerate)
             return
 

@@ -40,7 +40,7 @@ The app shall output one audio file for a single text-to-speech run.
 
 ## Audio output 
 
-The app shall ensure the total size of the final output audio file is less than 1GB. 
+The app shall ensure the total size of the final output audio file is less than 2 GB. 
 
 The app shall set the output file type to ".wav". 
 

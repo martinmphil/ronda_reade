@@ -17,7 +17,6 @@ class Oration:
     def __init__(self, input_path: Path):
         self.input_path = input_path
         self.chunks = []
-        self.audio_segments = []
 
     def run(self, progress=None) -> Path:
         """
@@ -28,6 +27,7 @@ class Oration:
         self.chunks = text_chunker.chunk()
 
         narrator_instance = narrator.Narrator()
+        audio_composer = audio_composition.AudioComposition()
         
         if progress:
             progress(0, desc="Narrating text...")
@@ -38,12 +38,11 @@ class Oration:
 
         for chunk in chunk_iterator:
             audio_segment = narrator_instance.narrate_chunk(chunk)
-            self.audio_segments.append(audio_segment)
+            audio_composer.add_segment(audio_segment)
 
         if progress:
             progress(1, desc="Assembling audio...")
 
-        audio_composer = audio_composition.AudioComposition(self.audio_segments)
         output_path = self.input_path.with_suffix(".wav")
         audio_composer.save(output_path, 24000)
         return output_path
