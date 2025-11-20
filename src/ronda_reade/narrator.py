@@ -39,8 +39,8 @@ class Narrator:
         )
 
         # Construct portable paths to the reference audio and text files
-        ref_audio_path = os.path.join(PROJECT_ROOT, 'voices', 'VCTK_p239', 'VCTK_p239.wav')
-        ref_text_path = os.path.join(PROJECT_ROOT, 'voices', 'VCTK_p239', 'VCTK_p239.txt')
+        ref_audio_path = os.path.join(PROJECT_ROOT, 'voices', 'SLR83', 'sof_07508_00062407046.wav')
+        ref_text_path = os.path.join(PROJECT_ROOT, 'voices', 'SLR83', 'sof_07508_00062407046.txt')
 
         # Read the reference text
         with open(ref_text_path, "r") as f:

@@ -43,3 +43,5 @@ poetry run pytest
 
 ## Voice 
 [Voice Cloning Toolkit (VCTK) corpus](https://datasets.activeloop.ai/docs/ml/datasets/vctk-dataset/)
+
+[Open Speech and Language Resources, LibriTTS corpus, SLR60](https://www.openslr.org/60/)
