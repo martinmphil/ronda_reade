@@ -23,7 +23,7 @@ class AppUI:
                 input_text_file = gr.File(label="Input Text File")
                 output_audio = gr.Audio(label="Output Audio", type="filepath")
 
-            start_button = gr.Button("Start Narration")
+            start_button = gr.Button("Convert text to speech")
 
             start_button.click(
                 fn=self._run_process,

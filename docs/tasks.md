@@ -3,6 +3,15 @@ At each step, the next requirement to be tackled is logically identified and the
 
 # Active Tasks
 
+## Output file size limit
+Limit audio file size to 2 GB. 
+
+## File location
+Offer users a choice of output audio file location.
+
+## Progress indicator
+Fulfil the requirement that, while the text-to-speech conversion job is running, the app shall provide the user with a visual progress indicator. 
+
 ## Assess audio flow
 *Goal: ensure well-paced smooth audio*
 

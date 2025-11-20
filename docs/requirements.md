@@ -56,31 +56,28 @@ When the user aborts a text-to-speech conversion job, the app shall leave the ou
 
 When a text-to-speech conversion job successfully completes, the app shall save the resulting audio data to an output file in the designated output directory. 
 
-## User interface 
+## Directories 
+When the user activates the app, the app shall allow the user to select an input text file from any arbitrary location on their file system. 
 
-### Start up 
+When the user activates the app, the app shall default to saving the output audio file in the `/tmp/gradio` directory. 
 
-When the user activates the app, the app shall prompt the user to select an input text file from any arbitrary location on the file system. 
+The `/tmp/gradio` directory shall regularly be purged of old files. 
 
-When the user activates the app, the user-input prompt for the input text file shall default to the `~/Downloads` directory. 
+When the user activates the app, the app shall offer the user an option of selecting an output directory for the output audio file at any arbitrary location on their file system. 
 
-When the user activates the app, the app shall prompt the user to select an output directory for the output audio file at any arbitrary location on the file system. 
+When the user selects an output directory, the user-output prompt for the output audio file shall default to the `~/Downloads` directory. 
 
-When the user activates the app, the user-output prompt for the output audio file shall default to the `~/Downloads` directory. 
-
-### Job progressing 
+## Job progressing 
 While the text-to-speech conversion job is running, the app shall provide the user with a visual progress indicator. 
 
 While the text-to-speech conversion job is running, the app shall provide the user with an option to abort the job. 
 
 While the text-to-speech conversion job is running, the app shall disable the file selection input to prevent concurrent jobs. 
 
-### Job complete 
-When the app successfully saves the audio file, the app shall display a confirmation message to the user saying, " Your audio speech is ready to play. " 
+## Job complete 
+When the app successfully saves the audio file, the app shall indicate the job is complete.
 
-When the app successfully saves the audio file, the app shall provide an option to open the output file's location. 
-
-### Unexpected errors 
+## Unexpected errors 
 If the app encounters an unhandled exception, then the app shall report an error to the user with a message saying, " An unexpected error occurred. Please try restarting the app. " 
 
 

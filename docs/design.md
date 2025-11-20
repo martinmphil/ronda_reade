@@ -21,7 +21,7 @@ To ensure separation of concerns, ease of testing, and maintainability, the appl
 
 ## User Interface (UI) Module
 
-Responsible for all user interaction. A simple web-based interface handles file uploads, displays status messages, and provides the generated audio for playback. It interacts with an `Oration` object to start the process and monitor its state.
+Responsible for all user interaction. A simple web-based interface handles file uploads, displays status messages, and tells the user where their output audio file is located. It interacts with an `Oration` object to start the process and monitor its state.
 
 ## Oration Class
 
