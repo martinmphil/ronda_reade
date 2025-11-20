@@ -16,7 +16,10 @@ class AppUI:
         with gr.Blocks() as app:
             gr.Markdown("# Ronda Reade")
             gr.Markdown(
-                "Convert your text file into a high-quality audio narration."
+                "Convert your text file into an audio narration."
+            )
+            gr.Markdown(
+                "This app saves output audio files to `/tmp/gradio`"
             )
 
             with gr.Row():

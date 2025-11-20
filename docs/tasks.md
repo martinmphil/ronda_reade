@@ -3,12 +3,6 @@ At each step, the next requirement to be tackled is logically identified and the
 
 # Active Tasks
 
-## Output file size limit
-Limit audio file size to 2 GB. 
-
-## File location
-Offer users a choice of output audio file location.
-
 ## Progress indicator
 Fulfil the requirement that, while the text-to-speech conversion job is running, the app shall provide the user with a visual progress indicator. 
 
@@ -19,8 +13,10 @@ Fulfil the requirement that, while the text-to-speech conversion job is running,
 
 ## Backlog (Future Tasks)
 *These are important tasks that can be prioritised and refined as the core application takes shape.*
-*   **Validation & Error Handling:** Implement the specific validation rules from `requirements.md` (file size, encoding, etc.).
+*   **Error Handling:** Implement the specific validation rules from `requirements.md`.
+*   **Acceptance criteria :** Implement remaining unfulfilled requirements from `requirements.md`.
 *   **Configuration:** Add configuration for default directories, etc.
+*   **File location:** Offer users a choice of output audio file location.
 
 # Completed Tasks
 
@@ -74,3 +70,6 @@ Running the `neutts-air` process for the first time on a machine triggers the do
 *   **Implement Basic UI:** Use `gradio.Blocks` to create the UI with file input, an output audio component, and a "Start" button.
 *   **Integrate `Oration`:** Connect the UI to the `Oration` class to run the text-to-speech process.
 *   **Update Entry Point:** Modify `src/ronda_reade/main.py` to launch the Gradio app.
+
+## Output file size limit
+Limit audio file size to 2 GB.

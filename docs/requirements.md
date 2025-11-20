@@ -54,18 +54,10 @@ The app shall complete the entire text-to-speech conversion process in less than
 
 When the user aborts a text-to-speech conversion job, the app shall leave the output directory in a clean state. 
 
-When a text-to-speech conversion job successfully completes, the app shall save the resulting audio data to an output file in the designated output directory. 
-
 ## Directories 
 When the user activates the app, the app shall allow the user to select an input text file from any arbitrary location on their file system. 
 
-When the user activates the app, the app shall default to saving the output audio file in the `/tmp/gradio` directory. 
-
-The `/tmp/gradio` directory shall regularly be purged of old files. 
-
-When the user activates the app, the app shall offer the user an option of selecting an output directory for the output audio file at any arbitrary location on their file system. 
-
-When the user selects an output directory, the user-output prompt for the output audio file shall default to the `~/Downloads` directory. 
+When a text-to-speech conversion job successfully completes, the app shall save the output audio file to a temporary directory managed by the user interface.
 
 ## Job progressing 
 While the text-to-speech conversion job is running, the app shall provide the user with a visual progress indicator. 
