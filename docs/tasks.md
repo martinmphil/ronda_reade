@@ -3,9 +3,6 @@ At each step, the next requirement to be tackled is logically identified and the
 
 # Active Tasks
 
-## Progress indicator
-Fulfil the requirement that, while the text-to-speech conversion job is running, the app shall provide the user with a visual progress indicator. 
-
 ## Assess audio flow
 *Goal: ensure well-paced smooth audio*
 
@@ -13,6 +10,7 @@ Fulfil the requirement that, while the text-to-speech conversion job is running,
 
 ## Backlog (Future Tasks)
 *These are important tasks that can be prioritised and refined as the core application takes shape.*
+*   **Abort button:** Allow the user to interrupt the text-to-speech conversion process.
 *   **Error Handling:** Implement the specific validation rules from `requirements.md`.
 *   **Acceptance criteria :** Implement remaining unfulfilled requirements from `requirements.md`.
 *   **Configuration:** Add configuration for default directories, etc.
@@ -73,3 +71,6 @@ Running the `neutts-air` process for the first time on a machine triggers the do
 
 ## Output file size limit
 Limit audio file size to 2 GB.
+
+## Progress indicator
+Fulfil the requirement that, while the text-to-speech conversion job is running, the app shall provide the user with a visual progress indicator.

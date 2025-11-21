@@ -28,9 +28,11 @@ This is the second paragraph."""
     test_file = tmp_path / "test.txt"
     test_file.write_text(test_content)
 
-    # Instantiate and run the orchestrator
+    # Instantiate the orchestrator and exhaust the generator
     oration = Oration(test_file)
-    oration.run()
+    # The return value of the generator is not needed for this test,
+    # but it must be exhausted to run the process.
+    _ = list(oration.run())
 
     # Assert Narrator was instantiated
     MockNarrator.Narrator.assert_called_once()
