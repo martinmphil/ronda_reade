@@ -59,6 +59,8 @@ When the user activates the app, the app shall allow the user to select an input
 
 When a text-to-speech conversion job successfully completes, the app shall save the output audio file to a temporary directory managed by the user interface.
 
+Tha app user interface shall state where output audio files are temporarily saved eg `/tmp/gradio`
+
 ## Job progressing 
 While the text-to-speech conversion job is running, the app shall provide the user with a visual progress indicator. 
 
