@@ -24,9 +24,9 @@ class AppUI:
 
             with gr.Row():
                 input_text_file = gr.File(label="Input Text File")
-                output_audio = gr.Audio(label="Output Audio", type="filepath", visible=True)
+                output_audio = gr.Audio(label="Output Audio", type="filepath")
 
-            progress_text = gr.Markdown("Ready to narrate.", visible=True)
+            progress_text = gr.Markdown("Ready to narrate.")
 
             start_button = gr.Button("Convert text to speech")
 
@@ -46,13 +46,12 @@ class AppUI:
         """
         if text_file is None:
             yield gr.update(
-                label="Error: No file provided. Please upload a text file.",
-                visible=True
+                label="Error: No file provided. Please upload a text file."
             ), gr.update(value="Error: No file provided. Please upload a text file.")
             return
 
         # Start of the process: ensure audio player is visible but empty
-        yield gr.update(value=None, visible=True), gr.update(value="Starting...")
+        yield gr.update(value=None, ), gr.update(value="Starting...")
 
         input_path = Path(text_file.name)
         oration = Oration(input_path=input_path)
@@ -69,20 +68,23 @@ class AppUI:
                     filled_length = int(bar_length * progress)
                     bar = '█' * filled_length + '-' * (bar_length - filled_length)
                     progress_string = f"[{bar}] {int(progress*100)}% {desc}"
-                    yield gr.update(visible=True), gr.update(value=progress_string)
+                    yield gr.update(), gr.update(value=progress_string)
 
+                # Generators signal completion by raising StopIteration.
+                # StopIteration is the expected mechanism for `oration_generator` to
+                # indicate it has finished and to return the final output path.
+                # It is not an error or fault in this context.
                 except StopIteration as e:
                     output_path = e.value # The return value is in the exception
                     break
 
         except Exception as e:
             yield gr.update(
-                label=f"Error: {e}",
-                visible=True
+                label=f"Error: {e}"
             ), gr.update(value=f"An error occurred: {e}")
             return
 
-        yield gr.update(value=str(output_path), label="Narration Complete", visible=True), gr.update(value="Narration Complete.")
+        yield gr.update(value=str(output_path), label="Narration Complete"), gr.update(value="Narration Complete.")
 
 
     def launch(self):
