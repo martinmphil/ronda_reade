@@ -1,11 +1,6 @@
 """Unit tests for the Narrator class."""
-import pytest
 import numpy as np
 from ronda_reade.narrator import Narrator
-
-# Mock the NeuTTSAir model in integration tests (e.g., test_oration.py)
-# to avoid slow loading and inference. For this unit test, load the actual
-# model to ensure Narrator class instantiation and correct model calls.
 
 def test_narrator_converts_chunk_to_audio():
     """

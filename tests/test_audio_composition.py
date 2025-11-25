@@ -52,9 +52,8 @@ def test_add_segment_raises_error_if_audio_exceeds_size_limit():
     Verify that adding a segment that exceeds the maximum audio size
     raises an AudioTooLargeError.
     """
-    # Instantiate AudioComposition with a smaller, test-specific size limit
-    # to avoid creating a huge 2GB file in the test.
-    # Let's set the limit to 10MB for the test.
+    # Instantiate AudioComposition with a smaller, test-specific size limit of
+    # 10MB to avoid creating a huge 2GB file in the test.
     test_max_size = 10 * 1024 * 1024  # 10 MB
     composition = AudioComposition(max_size_bytes=test_max_size)
 

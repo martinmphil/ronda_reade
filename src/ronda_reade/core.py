@@ -1,8 +1,8 @@
 """
 Core classes for the Ronda Reade application.
 
-This module defines the main architectural components as outlined in the design documentation.
-These classes orchestrate the text-to-speech conversion process, manage user input,
+This module defines the main architectural components of this application.
+These classes govern the text-to-speech conversion process, manage user input,
 handle text chunking, interact with the TTS model, and compose the final audio output.
 """
 
@@ -35,7 +35,7 @@ class AudioComposition:
 
 class Oration:
     """
-    The core engine of the application, managing the entire lifecycle of a text-to-speech conversion.
+    The core engine of the application managing the entire lifecycle of a text-to-speech conversion.
     Orchestrates validation, chunking, and the TTS process for a single job.
     """
     pass

@@ -1,5 +1,4 @@
 """Unit tests for the TextChunker class."""
-import pytest
 from ronda_reade.text_chunker import TextChunker
 
 def test_chunk_by_paragraph():
@@ -39,7 +38,7 @@ def test_chunk_by_sentences_multiple_paragraphs():
 
 def test_chunk_by_character_limit():
     """
-    Verify that a chunk is split if it exceeds the character limit.
+    Verify that a chunk is split when it exceeds the character limit.
     """
     # A single sentence with spaces that is longer than the character limit.
     long_sentence = "word " * 300  # This will be > 1000 chars

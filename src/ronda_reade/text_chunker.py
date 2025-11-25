@@ -12,7 +12,7 @@ class TextChunker:
     def __init__(self, text: str):
         self.text = text
 
-    def chunk(self):
+    def chunk(self) -> list[str]:
         """
         Applies chunking rules to the text.
         """
