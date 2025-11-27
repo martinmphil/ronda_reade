@@ -2,7 +2,7 @@
 This module contains the Narrator class, which handles text-to-speech conversion
 using the NeuTTSAir model.
 """
-import os
+from pathlib import Path
 import sys
 import warnings
 import numpy as np
@@ -10,14 +10,11 @@ import numpy as np
 # Suppress the UserWarning from pkg_resources
 warnings.filterwarnings("ignore", message="pkg_resources is deprecated as an API")
 
-# Force CPU use by hiding CUDA devices, suppressing PyTorch warnings
-os.environ['CUDA_VISIBLE_DEVICES'] = ''
-
 # Define the absolute path to the project root directory
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 # Add the vendored neutts-air library to the Python path
-neutts_air_path = os.path.join(PROJECT_ROOT, 'model', 'neutts-air')
+neutts_air_path = str(PROJECT_ROOT / 'model' / 'neutts-air')
 sys.path.append(neutts_air_path)
 
 # Import the NeuTTSAir class from the vendored library
@@ -38,15 +35,15 @@ class Narrator:
             codec_device="cpu"
         )
 
-        # Construct portable paths to the reference audio and text files
-        ref_audio_path = os.path.join(PROJECT_ROOT, 'voices', 'SLR83', 'sof_07508_00062407046.wav')
-        ref_text_path = os.path.join(PROJECT_ROOT, 'voices', 'SLR83', 'sof_07508_00062407046.txt')
+        # Construct portable paths to the reference audio and text files for voices
+        ref_audio_path = str(PROJECT_ROOT / 'voices' / 'SLR83' / 'sof_07508_00062407046.wav')
+        ref_text_path = PROJECT_ROOT / 'voices' / 'SLR83' / 'sof_07508_00062407046.txt'
 
         # Read the reference text
         with open(ref_text_path, "r") as f:
             self.ref_text = f.read().strip()
 
-        # Encode the reference audio
+        # Encode the reference audio voice
         self.ref_codes = self.tts.encode_reference(ref_audio_path)
 
     def narrate_chunk(self, text_chunk: str) -> np.ndarray:
