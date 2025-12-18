@@ -9,11 +9,22 @@ Ronda Reade is a local standalone desktop application for converting text to spe
 
 This text-to-speech (TTS) conversion uses the [neutts-air](https://huggingface.co/neuphonic/neutts-air) neural network running locally. The app provides an inbuilt voice. The user inputs a local text file and the app converts this text file into an audio output file which plays a faithful narration of the user's text with realistic speech patterns and natural cadence. 
 
-The Ronda Reade app is not intended for distribution as a library.
+The Ronda Reade app is not intended for distribution as a library. 
+
+## Requirements 
+See [requirements.md](./docs/requirements.md)
+
+## Design documentation
+See [design.md](./docs/design.md)
 
 # Execution 
 ```bash
 poetry run ronda-reade
+```
+
+# Unit Tests
+```bash
+poetry run pytest
 ```
 
 # Installation
@@ -32,11 +43,6 @@ sudo apt install espeak-ng
 Clone the `neutts-air` model code into a directory named `neutts-air` within a `model` directory at the root of this project. 
 ```bash
 git clone https://github.com/neuphonic/neutts-air model/neutts-air
-```
-
-# Unit Tests
-```bash
-poetry run pytest
 ```
 
 # Sources 
